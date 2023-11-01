@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from django import forms
 
@@ -19,3 +18,5 @@ def response(request):
 
 def login(request):
     return render(request, 'login.html')
+
+

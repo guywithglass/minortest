@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block start %}
+  <body class="body">
+    <div class="container">
+      <h2>Welcome to Our Parking Management Service</h2>
+      <p>
+        Our parking management system is designed to make parking hassle-free
+        and convenient. Whether you're a business owner or a driver, we've got
+        you covered.
+      </p>
+      <p>Ready to get started?</p>
+      <a href="#" class="button">Learn More</a>
+
+      <!-- Login Form -->
+      <h2>Login a Parking Slot</h2>
+      <center>
+        <form action="LoginDemo">
+        <table cellpadding="12">
+        <caption><font size="5px"><h3>Login Page</h3></font></caption>
+        <tr>
+        <td width="150"><h3>Enter Name</h3></td>
+        <td><input type ="text" placeholder ="Enter name" name = "un" style="width: 300px; height: 40px"></td>
+        </tr>
+        <tr>
+        <td><h3>Enter Password</h3></td>
+        <td><input type ="password" placeholder ="Enter password" name = "up" style="width: 300px; height: 40px"></td>
+        </tr>
+        <tr>
+        <th colspan ="2"><input type= "submit" class="button" name="login" ></th>
+        </tr>
+        </table>
+        </center>
+        </form>
+    </div>
+  </body>
+  {% endblock start %}
