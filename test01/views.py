@@ -5,8 +5,17 @@ from django import forms
 def index(request):
     return render(request, 'index.html')
 
+def contact(request):
+    return render(request, 'contact.html')
+
 def home(request):
-    return render(request, 'home-landing-7.html')
+    return render(request, 'index1.html')
+
+def properties(request):
+    return render(request, 'properties.html')
+
+def properties_details(request):
+    return render(request, 'property-details.html')
 
 def response(request):
     aname = request.POST.get('name')
