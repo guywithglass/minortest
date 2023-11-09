@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django import forms
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 def index(request):
     return render(request, 'index.html')
@@ -19,7 +21,6 @@ def response(request):
     print(look)
     return render(request, 'response.html', look)
 
-def login(request):
-    return render(request, 'login.html')
+
 
 

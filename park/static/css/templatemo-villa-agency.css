@@ -745,7 +745,7 @@ Banner Style
 }
 
 .main-banner .item-1 {
-  background-image: url(../images/banner-01.jpg);
+  background-image: url(../images/indore.jpg);
 }
 
 .main-banner .item-2 {
@@ -1286,6 +1286,10 @@ Contact Style
   background-color: #fff;
 }
 
+.contact-content #row2 {
+  margin-left: 50%;
+}
+
 .contact-content #contact-form label {
   font-size: 15px;
   color: #3a3a3a;
@@ -1639,7 +1643,9 @@ Contact Page Style
 }
 
 .contact-page #contact-form {
-  margin-left: 30px;
+  /* margin-left: 30px; */
+  margin: 0 auto;
+
   border-radius: 10px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
   padding: 35px 30px;
