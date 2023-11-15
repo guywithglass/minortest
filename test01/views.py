@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib import messages
@@ -55,12 +55,14 @@ def login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(username=username, password=password)
 
         if user is not None:
-            login(request, user)
+            auth_login(request, user)
             messages.success(request, f'Welcome, {user.username}!')
             return redirect('login')  
         else:
             messages.error(request, 'Invalid login credentials.')
     return render(request, 'login.html')
+
+# //how to make login in django?
