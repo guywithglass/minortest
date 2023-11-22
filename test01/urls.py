@@ -26,6 +26,7 @@ urlpatterns = [
     path('areas/', views.areas, name='areas'),
     path('area_details/', views.area_details, name='area_details'),
     path('response/', views.response, name='response'),
+    path('live/', views.live, name='live'),
 
     #account
     path('login/', views.login, name='login'),

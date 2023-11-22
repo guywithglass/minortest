@@ -12,6 +12,61 @@ import cvzone
 import numpy as np
 
 def index(request):
+    return render(request, 'index.html')
+
+def contact(request):
+    return render(request, 'contact.html')  
+
+def areas(request):
+    return render(request, 'areas.html')
+
+def area_details(request):
+    return render(request, 'area-details.html')
+
+
+
+# account
+def register(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        username = request.POST['username']
+        password = request.POST['password']
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Username is already taken.')
+            return redirect('register')
+        elif User.objects.filter(email=email).exists():
+            messages.error(request, 'Email is already in use.')
+            return redirect('register')
+        else:
+            user =  User.objects.create_user(first_name=name, email=email, username=username, password=password)
+            user.save()
+            print("User Created")
+            return redirect('index')
+
+    return render(request, 'register.html')
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            auth_login(request, user)
+            messages.success(request, f'Welcome, {user.username}!')
+            return redirect('login')  
+        else:
+            messages.error(request, 'Invalid login credentials.')
+    return render(request, 'login.html')
+
+
+# first try code
+def home(request):
+    return render(request, 'index1.html')
+
+def live(request):
     cap = cv2.VideoCapture('park/static/images/carPark.mp4')
     width, height = 103, 43
     with open('CarParkPos', 'rb') as f:
@@ -57,7 +112,6 @@ def index(request):
         spaces = spaces
 
 
-# // how to post the open cv data to the django views.py?
 
     while True:
 
@@ -90,58 +144,6 @@ def index(request):
         key = cv2.waitKey(1)
         if key == ord('r'):
             pass
-        return redirect('index')
-    # return render(request, 'index.html', {'spaces': spaces})
-
-def contact(request):
-    return render(request, 'contact.html')  
-
-def areas(request):
-    return render(request, 'areas.html')
-
-def area_details(request):
-    return render(request, 'area-details.html')
-
-# account
-def register(request):
-    if request.method == 'POST':
-        name = request.POST['name']
-        email = request.POST['email']
-        username = request.POST['username']
-        password = request.POST['password']
-
-        if User.objects.filter(username=username).exists():
-            messages.error(request, 'Username is already taken.')
-            return redirect('register')
-        elif User.objects.filter(email=email).exists():
-            messages.error(request, 'Email is already in use.')
-            return redirect('register')
-        else:
-            user =  User.objects.create_user(first_name=name, email=email, username=username, password=password)
-            user.save()
-            print("User Created")
-            return redirect('index')
-
-    return render(request, 'register.html')
-
-def login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            auth_login(request, user)
-            messages.success(request, f'Welcome, {user.username}!')
-            return redirect('login')  
-        else:
-            messages.error(request, 'Invalid login credentials.')
-    return render(request, 'login.html')
-
-
-# first try code
-def home(request):
-    return render(request, 'index1.html')
 
 
 def response(request):
